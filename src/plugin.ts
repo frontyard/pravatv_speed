@@ -30,9 +30,9 @@ const plugin: ModulePlugin = {
     },
   },
   register(router, logger) {
-    const DEFAULT_SIZE = envInt("DEFAULT_SIZE", 10 * 1024 * 1024);
-    const MAX_DOWNLOAD = envInt("MAX_DOWNLOAD", 100 * 1024 * 1024);
-    const MAX_UPLOAD = envInt("MAX_UPLOAD", 100 * 1024 * 1024);
+    const DEFAULT_SIZE = envInt("SPEED_DEFAULT_SIZE", 10 * 1024 * 1024);
+    const MAX_DOWNLOAD = envInt("SPEED_MAX_DOWNLOAD", 100 * 1024 * 1024);
+    const MAX_UPLOAD = envInt("SPEED_MAX_UPLOAD", 100 * 1024 * 1024);
 
     router.get("/download", (req: Request, res: Response) => {
       try {
