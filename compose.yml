@@ -1,0 +1,11 @@
+services:
+  pravatv_speed:
+    image: "docker.klik.cc/pravatv_speed:latest"
+    ports:
+      - "3000:3000"
+    environment:
+      # PORT: "3000"
+      # LOG_LEVEL: "info"
+      # SPEED_DEFAULT_SIZE: "10485760"
+      # SPEED_MAX_DOWNLOAD: "104857600"
+      # SPEED_MAX_UPLOAD: "104857600"

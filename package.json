@@ -1,0 +1,21 @@
+{
+  "name": "pravatv_speed",
+  "version": "3.0.5",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "NODE_ENV=development tsx watch src/index.ts",
+    "start": "NODE_ENV=production tsx src/index.ts",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "pravatv_services": "git+ssh://git@github.com:frontyard/pravatv_services.git#3.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "@types/express": "^5.0.6",
+    "eslint": "^9.39.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
