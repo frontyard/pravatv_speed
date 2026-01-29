@@ -17,15 +17,8 @@ const plugin: ModulePlugin = {
       disableBodyParser: true,
     },
     response: {
-      maxBytes: 100 * 1024 * 1024,
-    },
-    rateLimit: {
-      windowMs: 60 * 1000,
-      max: 10,
-      message: { error: "Too many requests, please try again later" },
-      standardHeaders: true,
-      legacyHeaders: false,
-    },
+      maxBytes: "100Mb"
+    }
   },
   register(router, logger) {
     const DEFAULT_SIZE = envInt("DEFAULT_SIZE", 10 * 1024 * 1024);

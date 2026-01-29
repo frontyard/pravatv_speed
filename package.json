@@ -9,7 +9,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "pravatv_services": "git+ssh://git@github.com:frontyard/pravatv_services.git#3.0.5"
+    "pravatv_services": "git+ssh://git@github.com:frontyard/pravatv_services.git"
   },
   "devDependencies": {
     "@types/node": "^25.0.3",
