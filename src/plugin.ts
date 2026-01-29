@@ -13,7 +13,6 @@ const plugin: ModulePlugin = {
   config: {
     name: "speed",
     basePath: "/speed",
-    requiredEnv: [],
     request: {
       jsonLimit: "10mb",
       urlencodedLimit: "10mb",
