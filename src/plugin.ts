@@ -15,8 +15,9 @@ const plugin: ModulePlugin = {
     basePath: "/speed",
     requiredEnv: [],
     request: {
-      jsonLimit: "2kb",
-      urlencodedLimit: "2kb",
+      jsonLimit: "10mb",
+      urlencodedLimit: "10mb",
+      disableBodyParser: true,
     },
     response: {
       maxBytes: 100 * 1024 * 1024,
@@ -33,6 +34,10 @@ const plugin: ModulePlugin = {
     const DEFAULT_SIZE = envInt("DEFAULT_SIZE", 10 * 1024 * 1024);
     const MAX_DOWNLOAD = envInt("MAX_DOWNLOAD", 100 * 1024 * 1024);
     const MAX_UPLOAD = envInt("MAX_UPLOAD", 100 * 1024 * 1024);
+
+    router.options("/download", (_req: Request, res: Response) => {
+      res.status(204).end();
+    });
 
     router.get("/download", (req: Request, res: Response) => {
       try {
@@ -55,6 +60,7 @@ const plugin: ModulePlugin = {
         res.setHeader("Content-Length", String(total));
 
         let ended = false;
+
         const endOnce = () => {
           if (ended) return;
           ended = true;
@@ -64,10 +70,14 @@ const plugin: ModulePlugin = {
 
         const abortOnce = () => {
           if (ended) return;
+          if (remaining <= 0 || res.writableEnded) {
+            return;
+          }
           ended = true;
           logger.warn(`/download abort: reqId=${reqId}`);
         };
 
+        res.on("finish", endOnce);
         req.on("aborted", abortOnce);
         res.on("close", () => {
           if (remaining > 0) abortOnce();
@@ -105,6 +115,11 @@ const plugin: ModulePlugin = {
         res.status(500).json({ error: "Internal server error" });
       }
     });
+
+    router.options("/upload", (_req: Request, res: Response) => {
+      res.status(204).end();
+    });
+
     router.post("/upload", (req: Request, res: Response) => {
       try {
         const start = Date.now();
