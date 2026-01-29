@@ -14,8 +14,6 @@ const plugin: ModulePlugin = {
     name: "speed",
     basePath: "/speed",
     request: {
-      jsonLimit: "10mb",
-      urlencodedLimit: "10mb",
       disableBodyParser: true,
     },
     response: {
